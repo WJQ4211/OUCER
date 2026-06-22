@@ -2,10 +2,10 @@
  * Location hub - city selection + activity list
  */
 
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useRef, useState, useCallback } from 'react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
-import { PageLayout, Header, Skeleton, EmptyState, Card, Button } from '@/components'
+import { PageLayout, Header, Skeleton, EmptyState, Button } from '@/components'
 import { ActivityCard } from '@/components/ActivityCard'
 import { getActivityList } from '@/services/api/location'
 import styles from './index.module.scss'
@@ -23,8 +23,12 @@ const LocationListPage: FC = () => {
   const [loading, setLoading] = useState(true)
   const [selectedCity, setSelectedCity] = useState('')
   const [activities, setActivities] = useState<any[]>([])
+  const fetching = useRef(false)
+  const mounted = useRef(false)
 
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
+    if (fetching.current) return
+    fetching.current = true
     setLoading(true)
     try {
       const result = await getActivityList()
@@ -33,11 +37,15 @@ const LocationListPage: FC = () => {
       setActivities([])
     } finally {
       setLoading(false)
+      fetching.current = false
     }
-  }
+  }, [])
 
   useEffect(() => {
-    fetchActivities()
+    if (!mounted.current) {
+      mounted.current = true
+      fetchActivities()
+    }
   }, [])
 
   useDidShow(() => {
@@ -74,7 +82,7 @@ const LocationListPage: FC = () => {
           <Text className={styles.sectionMore} onClick={handlePublish}>发起活动 +</Text>
         </View>
 
-        {loading ? (
+        {loading && activities.length === 0 ? (
           <Skeleton type="card" count={2} />
         ) : activities.length > 0 ? (
           activities.map((a) => (

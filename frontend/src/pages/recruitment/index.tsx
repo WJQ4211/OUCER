@@ -2,7 +2,7 @@
  * Discussion forum - post list page
  */
 
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import Taro, { useReachBottom, usePullDownRefresh, useDidShow } from '@tarojs/taro'
 import { PageLayout, Header, Tag, Button, Skeleton, EmptyState } from '@/components'
@@ -25,19 +25,32 @@ const ForumPage: FC = () => {
     list, loading, hasMore, filter,
     refresh, loadMore, setFilter, handleLike,
   } = useDiscussionList()
+  const refreshing = useRef(false)
+  const mounted = useRef(false)
 
-  // Refresh on first mount
+  const doRefresh = async (f?: any) => {
+    if (refreshing.current) return
+    refreshing.current = true
+    try {
+      await refresh(f)
+    } finally {
+      refreshing.current = false
+    }
+  }
+
   useEffect(() => {
-    refresh()
+    if (!mounted.current) {
+      mounted.current = true
+      doRefresh()
+    }
   }, [])
 
-  // Refresh every time the page becomes visible (e.g., back from publish)
   useDidShow(() => {
-    refresh()
+    doRefresh()
   })
 
   usePullDownRefresh(() => {
-    refresh().finally(() => Taro.stopPullDownRefresh())
+    doRefresh().finally(() => Taro.stopPullDownRefresh())
   })
 
   useReachBottom(() => {
@@ -55,7 +68,7 @@ const ForumPage: FC = () => {
   const handleCategoryChange = (cat: string) => {
     const nextFilter = cat ? { category: cat as DiscussionCategory } : {}
     setFilter(nextFilter)
-    refresh(nextFilter)
+    doRefresh(nextFilter)
   }
 
   return (
