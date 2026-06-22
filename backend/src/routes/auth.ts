@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 import config from '@/config'
 import { signToken } from '@/utils/jwt'
 import { authMiddleware } from '@/middlewares/auth'
+import { load, save } from '@/utils/devStore'
 import {
   generateCode,
   storeDevCode,
@@ -12,31 +13,21 @@ import {
 
 const router = Router()
 
-// In-memory storage for dev mode (no DB needed)
+// Persistent storage for users
 interface DevUser {
   openId: string
-  nickname: string
-  avatar: string | null
-  graduationYear: number | null
-  department: string | null
-  major: string | null
-  realName: string | null
-  gender: 'male' | 'female' | 'hidden'
-  showDepartment: boolean
-  showMajor: boolean
-  showRealName: boolean
+  nickname: string; avatar: string | null
+  graduationYear: number | null; department: string | null; major: string | null
+  realName: string | null; gender: 'male' | 'female' | 'hidden'
+  showDepartment: boolean; showMajor: boolean; showRealName: boolean
   ipProvince: string | null
-  phone: string | null
-  email: string | null
-  wechat: string | null
-  city: string | null
-  bio: string | null
-  isVerified: boolean
-  verificationMethod: 'email' | 'chsi' | null
-  oucEmail: string | null
-  createdAt: string
+  phone: string | null; email: string | null; wechat: string | null
+  city: string | null; bio: string | null
+  isVerified: boolean; verificationMethod: 'email' | 'chsi' | null
+  oucEmail: string | null; createdAt: string
 }
-const devUsers = new Map<string, DevUser>()
+const devUsers = load<DevUser>('users')
+const persist = () => save('users', devUsers)
 
 const getOrCreateDevUser = (openId: string): DevUser => {
   let user = devUsers.get(openId)
@@ -153,6 +144,7 @@ router.post('/login', async (req: Request, res: Response) => {
       if (ipProvince) user.ipProvince = ipProvince
     }
 
+    if (isNewUser) persist()
     const token = signToken({ openId })
 
     res.json({
@@ -214,6 +206,7 @@ router.post('/verify/confirm-email', authMiddleware, async (req: Request, res: R
     user.isVerified = true
     user.verificationMethod = 'email'
     user.oucEmail = oucEmail
+    persist()
 
     res.json({
       code: 0,
@@ -239,11 +232,9 @@ router.post('/verify/chsi', authMiddleware, async (req: Request, res: Response) 
     }
 
     user.realName = realName
-    // In production: manual review. Dev: auto-approve after a delay
     user.isVerified = true
     user.verificationMethod = 'chsi'
-
-    console.log(`[DEV] CHSI verified for ${req.user!.openId}: ${realName} / ${verifyCode}`)
+    persist()
 
     res.json({
       code: 0,
@@ -284,6 +275,7 @@ router.put('/me', authMiddleware, async (req: Request, res: Response) => {
     }
   }
 
+  persist()
   res.json({ code: 0, data: formatDevUser(user) })
 })
 
