@@ -39,6 +39,8 @@ const PublishActivityPage: FC = () => {
         startTime: startTime.trim(), endTime: endTime.trim(), address: address.trim(),
         capacity: parseInt(capacity) || 30,
       })
+      Taro.eventCenter.trigger('refreshActivities')
+      Taro.eventCenter.trigger('refreshHome')
       Taro.showToast({ title: '活动发布成功', icon: 'success' })
       setTimeout(() => Taro.navigateBack(), 1500)
     } catch {

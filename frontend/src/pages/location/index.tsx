@@ -2,9 +2,9 @@
  * Location hub - city selection + activity list
  */
 
-import { FC, useEffect, useRef, useState, useCallback } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import Taro, { useDidShow } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { PageLayout, Header, Skeleton, EmptyState, Button } from '@/components'
 import { ActivityCard } from '@/components/ActivityCard'
 import { getActivityList } from '@/services/api/location'
@@ -23,12 +23,8 @@ const LocationListPage: FC = () => {
   const [loading, setLoading] = useState(true)
   const [selectedCity, setSelectedCity] = useState('')
   const [activities, setActivities] = useState<any[]>([])
-  const fetching = useRef(false)
-  const mounted = useRef(false)
 
-  const fetchActivities = useCallback(async () => {
-    if (fetching.current) return
-    fetching.current = true
+  const fetchActivities = async () => {
     setLoading(true)
     try {
       const result = await getActivityList()
@@ -37,20 +33,18 @@ const LocationListPage: FC = () => {
       setActivities([])
     } finally {
       setLoading(false)
-      fetching.current = false
     }
-  }, [])
+  }
 
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true
-      fetchActivities()
-    }
+    fetchActivities()
   }, [])
 
-  useDidShow(() => {
-    fetchActivities()
-  })
+  // Listen for navigation back from publish page
+  useEffect(() => {
+    Taro.eventCenter.on('refreshActivities', fetchActivities)
+    return () => { Taro.eventCenter.off('refreshActivities', fetchActivities) }
+  }, [])
 
   const handleCityClick = (city: string) => setSelectedCity(city)
   const handleActivityClick = (id: string) => {

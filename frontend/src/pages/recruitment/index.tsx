@@ -4,7 +4,7 @@
 
 import { FC, useEffect, useRef } from 'react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import Taro, { useReachBottom, usePullDownRefresh, useDidShow } from '@tarojs/taro'
+import Taro, { useReachBottom, usePullDownRefresh } from '@tarojs/taro'
 import { PageLayout, Header, Tag, Button, Skeleton, EmptyState } from '@/components'
 import { PostCard } from '@/components/PostCard'
 import { useDiscussionList } from '@/hooks/useRecruitment'
@@ -21,33 +21,26 @@ const CATEGORY_FILTERS: { key: DiscussionCategory | ''; label: string }[] = [
 ]
 
 const ForumPage: FC = () => {
-  const {
-    list, loading, hasMore, filter,
-    refresh, loadMore, setFilter, handleLike,
-  } = useDiscussionList()
-  const refreshing = useRef(false)
-  const mounted = useRef(false)
+  const { list, loading, hasMore, filter, refresh, loadMore, setFilter, handleLike } = useDiscussionList()
+  const inFlight = useRef(false)
 
   const doRefresh = async (f?: any) => {
-    if (refreshing.current) return
-    refreshing.current = true
-    try {
-      await refresh(f)
-    } finally {
-      refreshing.current = false
-    }
+    if (inFlight.current) return
+    inFlight.current = true
+    await refresh(f)
+    inFlight.current = false
   }
 
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true
-      doRefresh()
-    }
+    doRefresh()
   }, [])
 
-  useDidShow(() => {
-    doRefresh()
-  })
+  // Listen for refresh from publish page
+  useEffect(() => {
+    const cb = () => doRefresh()
+    Taro.eventCenter.on('refreshDiscussions', cb)
+    return () => { Taro.eventCenter.off('refreshDiscussions', cb) }
+  }, [])
 
   usePullDownRefresh(() => {
     doRefresh().finally(() => Taro.stopPullDownRefresh())
@@ -57,14 +50,8 @@ const ForumPage: FC = () => {
     if (!loading && hasMore) loadMore()
   })
 
-  const handleCreatePost = () => {
-    Taro.navigateTo({ url: '/pages/recruitment/publish' })
-  }
-
-  const handlePostClick = (id: string) => {
-    Taro.navigateTo({ url: `/pages/recruitment/detail?id=${id}` })
-  }
-
+  const handleCreatePost = () => Taro.navigateTo({ url: '/pages/recruitment/publish' })
+  const handlePostClick = (id: string) => Taro.navigateTo({ url: `/pages/recruitment/detail?id=${id}` })
   const handleCategoryChange = (cat: string) => {
     const nextFilter = cat ? { category: cat as DiscussionCategory } : {}
     setFilter(nextFilter)
@@ -96,30 +83,17 @@ const ForumPage: FC = () => {
         ) : list.length > 0 ? (
           <View className={styles.list}>
             {list.map((post: any) => (
-              <PostCard
-                key={post.id}
-                {...post}
-                onClick={handlePostClick}
-                onLike={handleLike}
-              />
+              <PostCard key={post.id} {...post} onClick={handlePostClick} onLike={handleLike} />
             ))}
             {!hasMore && <Text className={styles.noMore}>— 没有更多了 —</Text>}
           </View>
         ) : (
-          <EmptyState
-            type="data"
-            title="还没有讨论帖"
-            description="成为第一个发起讨论的校友吧"
-            actionText="发起讨论"
-            onAction={handleCreatePost}
-          />
+          <EmptyState type="data" title="还没有讨论帖" description="成为第一个发起讨论的校友吧" actionText="发起讨论" onAction={handleCreatePost} />
         )}
       </ScrollView>
 
       <View className={styles.fab}>
-        <Button type="primary" shape="circle" size="lg" onClick={handleCreatePost}>
-          ✏️
-        </Button>
+        <Button type="primary" shape="circle" size="lg" onClick={handleCreatePost}>✏️</Button>
       </View>
     </PageLayout>
   )

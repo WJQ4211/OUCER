@@ -2,9 +2,9 @@
  * Home page - shows latest discussions and activities
  */
 
-import { FC, useEffect, useState, useRef } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import Taro, { useDidShow } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { PageLayout, Skeleton, EmptyState, Card } from '@/components'
 import { PostCard } from '@/components/PostCard'
 import { ActivityCard } from '@/components/ActivityCard'
@@ -25,11 +25,8 @@ const HomePage: FC = () => {
   const [statusBarH, setStatusBarH] = useState(20)
   const [discussions, setDiscussions] = useState<any[]>([])
   const [activities, setActivities] = useState<any[]>([])
-  const fetching = useRef(false)
 
   const fetchData = async () => {
-    if (fetching.current) return
-    fetching.current = true
     setLoading(true)
     try {
       const [discRes, actRes] = await Promise.all([
@@ -39,10 +36,9 @@ const HomePage: FC = () => {
       setDiscussions(discRes.list || [])
       setActivities(actRes.list || [])
     } catch {
-      // keep empty arrays
+      // keep empty
     } finally {
       setLoading(false)
-      fetching.current = false
     }
   }
 
@@ -51,9 +47,11 @@ const HomePage: FC = () => {
     fetchData()
   }, [])
 
-  useDidShow(() => {
-    fetchData()
-  })
+  // Listen for refresh from publish pages
+  useEffect(() => {
+    Taro.eventCenter.on('refreshHome', fetchData)
+    return () => { Taro.eventCenter.off('refreshHome', fetchData) }
+  }, [])
 
   const handleEntryClick = (entry: typeof QUICK_ENTRIES[number]) => {
     if (entry.path.startsWith('/pages/')) {
@@ -63,13 +61,8 @@ const HomePage: FC = () => {
     }
   }
 
-  const handlePostClick = (id: string) => {
-    Taro.navigateTo({ url: `/pages/recruitment/detail?id=${id}` })
-  }
-
-  const handleActivityClick = (id: string) => {
-    Taro.navigateTo({ url: `/pages/location/activity-detail?id=${id}` })
-  }
+  const handlePostClick = (id: string) => Taro.navigateTo({ url: `/pages/recruitment/detail?id=${id}` })
+  const handleActivityClick = (id: string) => Taro.navigateTo({ url: `/pages/location/activity-detail?id=${id}` })
 
   return (
     <PageLayout activeTab="index" showTabBar>
@@ -91,7 +84,6 @@ const HomePage: FC = () => {
         ))}
       </View>
 
-      {/* Recent discussions */}
       <View className={styles.section}>
         <View className={styles.sectionHeader}>
           <Text className={styles.sectionTitle}>💬 最新讨论</Text>
@@ -113,7 +105,6 @@ const HomePage: FC = () => {
         )}
       </View>
 
-      {/* Recent activities */}
       <View className={styles.section}>
         <View className={styles.sectionHeader}>
           <Text className={styles.sectionTitle}>📅 近期活动</Text>

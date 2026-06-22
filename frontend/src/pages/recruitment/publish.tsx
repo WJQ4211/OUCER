@@ -28,7 +28,8 @@ const PublishPage: FC = () => {
     if (!title.trim()) { Taro.showToast({ title: '请输入标题', icon: 'none' }); return }
     if (!content.trim()) { Taro.showToast({ title: '请输入内容', icon: 'none' }); return }
     if (!category) { Taro.showToast({ title: '请选择分类', icon: 'none' }); return }
-    await publish({ title: title.trim(), content: content.trim(), category })
+    const result = await publish({ title: title.trim(), content: content.trim(), category })
+    if (result) { Taro.eventCenter.trigger('refreshDiscussions'); Taro.eventCenter.trigger('refreshHome') }
   }
 
   return (
