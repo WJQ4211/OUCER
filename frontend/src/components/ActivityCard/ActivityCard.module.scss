@@ -1,0 +1,104 @@
+@import '@/styles/variables.scss';
+
+.card {
+  background-color: $bg-main;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  margin-bottom: $space-m;
+  overflow: hidden;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadow-md;
+  }
+}
+
+.cover {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+}
+
+.coverPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, $primary-light 0%, $bg-secondary 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverEmoji {
+  font-size: 36px;
+}
+
+.statusBadge {
+  position: absolute;
+  top: $space-s;
+  right: $space-s;
+}
+
+.body {
+  padding: $space-m $space-l $space-l;
+}
+
+.title {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  display: block;
+  margin-bottom: $space-xs;
+}
+
+.desc {
+  font-size: $body-sm;
+  color: $text-medium;
+  display: block;
+  margin-bottom: $space-m;
+  line-height: $line-height-md;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  margin-bottom: $space-m;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
+
+.metaIcon {
+  font-size: $body-sm;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+
+.metaText {
+  font-size: $body-sm;
+  color: $text-medium;
+  flex: 1;
+}
+
+.fullText {
+  color: $error;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $space-m;
+  border-top: 1px solid $border-color;
+}
+
+.organizer {
+  font-size: $body-sm;
+  color: $text-light;
+  flex: 1;
+}

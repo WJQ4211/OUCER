@@ -1,0 +1,174 @@
+@import '@/styles/variables.scss';
+
+.container {
+  padding: $space-l;
+}
+
+// Shimmer animation
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    $bg-secondary 25%,
+    $border-light 37%,
+    $bg-secondary 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+// Text skeleton
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+}
+
+.textLine {
+  height: 14px;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+// Card skeleton
+.card {
+  background-color: $bg-main;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  margin-bottom: $space-m;
+  overflow: hidden;
+}
+
+.cardHeader {
+  height: 80px;
+  background-color: $bg-secondary;
+}
+
+.cardBody {
+  padding: $space-m;
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+}
+
+.cardTitle {
+  height: 16px;
+  width: 70%;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+.cardLine {
+  height: 12px;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+// Avatar skeleton
+.avatarBlock {
+  display: flex;
+  align-items: center;
+  padding: $space-m 0;
+  border-bottom: 1px solid $border-color;
+}
+
+.avatarCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-circle;
+  background-color: $bg-secondary;
+  margin-right: $space-m;
+  flex-shrink: 0;
+}
+
+.avatarInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.avatarName {
+  height: 16px;
+  width: 120px;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+.avatarDesc {
+  height: 12px;
+  width: 80px;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+// Header skeleton
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-m;
+}
+
+.headerBanner {
+  height: 120px;
+  border-radius: $radius-lg;
+  background-color: $bg-secondary;
+}
+
+.headerRow {
+  display: flex;
+  gap: $space-m;
+}
+
+.headerItem {
+  flex: 1;
+  height: 40px;
+  border-radius: $radius-md;
+  background-color: $bg-secondary;
+}
+
+// List skeleton
+.listItem {
+  display: flex;
+  align-items: center;
+  padding: $space-m 0;
+  border-bottom: 1px solid $border-color;
+}
+
+.listThumb {
+  width: 60px;
+  height: 60px;
+  border-radius: $radius-md;
+  background-color: $bg-secondary;
+  margin-right: $space-m;
+  flex-shrink: 0;
+}
+
+.listInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+}
+
+.listTitle {
+  height: 16px;
+  width: 80%;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}
+
+.listDesc {
+  height: 12px;
+  width: 50%;
+  border-radius: $radius-sm;
+  background-color: $bg-secondary;
+}

@@ -1,0 +1,134 @@
+@import '@/styles/variables.scss';
+
+.container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+.profileCard {
+  margin: $space-l;
+  padding: $space-xl;
+  background: linear-gradient(135deg, $bg-main 0%, $primary-light 50%);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userMeta {
+  margin-left: $space-l;
+  flex: 1;
+  overflow: hidden;
+}
+
+.identity {
+  display: block;
+  font-size: $body-lg;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: $space-xs;
+}
+
+.ip {
+  display: block;
+  font-size: $body-sm;
+  color: $text-light;
+  margin-bottom: $space-s;
+}
+
+.bio {
+  display: block;
+  font-size: $body-sm;
+  color: $text-medium;
+  margin-bottom: $space-s;
+}
+
+.userTags {
+  display: flex;
+  gap: $space-s;
+}
+
+.loginPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-m;
+}
+
+.loginHint {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.loginText {
+  font-size: $body-md;
+  color: $text-medium;
+}
+
+// 菜单区
+.menuSection {
+  margin: 0 $space-l $space-l;
+}
+
+.sectionTitle {
+  display: block;
+  font-size: $body-sm;
+  color: $text-light;
+  margin-bottom: $space-s;
+  padding-left: $space-xs;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: $space-m $space-l;
+  transition: background-color $transition-fast;
+
+  &:active {
+    background-color: $bg-secondary;
+  }
+}
+
+.menuItemBorder {
+  border-bottom: 1px solid $border-color;
+}
+
+.menuIcon {
+  font-size: 20px;
+  margin-right: $space-m;
+  width: 24px;
+  text-align: center;
+}
+
+.menuLabel {
+  flex: 1;
+  font-size: $body-md;
+  color: $text-dark;
+}
+
+.menuRight {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+}
+
+.menuArrow {
+  font-size: 20px;
+  color: $text-light;
+}
+
+// 退出
+.logoutSection {
+  padding: $space-l;
+  padding-top: 0;
+}
+
+.version {
+  display: block;
+  text-align: center;
+  color: $text-light;
+  font-size: $body-sm;
+  padding: $space-xl 0;
+}

@@ -1,0 +1,119 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.tabBar {
+  display: flex;
+  background-color: $bg-main;
+  border-bottom: 1px solid $border-color;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-m 0;
+  position: relative;
+  transition: all $transition-fast;
+}
+
+.tabText {
+  font-size: $body-md;
+  color: $text-medium;
+}
+
+.tabTextActive {
+  color: $primary;
+  font-weight: 500;
+}
+
+.tabIndicator {
+  position: absolute;
+  bottom: 0;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: $primary;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-l;
+}
+
+.itemCard {
+  margin-bottom: $space-m;
+  padding: $space-l;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-xs;
+}
+
+.itemTitle {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  flex: 1;
+  margin-right: $space-m;
+}
+
+.itemSalary {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $accent;
+  flex-shrink: 0;
+}
+
+.itemCompany {
+  display: block;
+  font-size: $body-sm;
+  color: $text-medium;
+  margin-bottom: $space-m;
+}
+
+.itemFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemStats {
+  display: flex;
+  gap: $space-m;
+}
+
+.itemStat {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.itemTime {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.statusTag {
+  padding: 2px $space-s;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-size: $body-sm;
+  font-weight: 500;
+}

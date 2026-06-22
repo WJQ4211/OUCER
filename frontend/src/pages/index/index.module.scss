@@ -1,0 +1,102 @@
+@import '@/styles/variables.scss';
+
+// Banner
+.banner {
+  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+  padding: $space-xxl $space-l $space-xl;
+  color: $text-white;
+}
+
+.bannerContent {
+  text-align: center;
+}
+
+.bannerTitle {
+  display: block;
+  font-size: $heading-xl;
+  font-weight: bold;
+  margin-bottom: $space-s;
+}
+
+.bannerSubtitle {
+  display: block;
+  font-size: $body-sm;
+  opacity: 0.9;
+}
+
+// 快捷入口
+.quickEntries {
+  display: flex;
+  justify-content: space-around;
+  padding: $space-l;
+  background-color: $bg-main;
+  box-shadow: $shadow-sm;
+  margin-top: -12px;
+  border-radius: $radius-lg $radius-lg 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.entryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-s;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.entryIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: $primary-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.entryEmoji {
+  font-size: 22px;
+}
+
+.entryLabel {
+  font-size: $body-sm;
+  color: $text-medium;
+}
+
+// 区块
+.section {
+  padding: 0 $space-l;
+  margin-bottom: $space-l;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-m;
+}
+
+.sectionTitle {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+}
+
+.sectionMore {
+  font-size: $body-sm;
+  color: $primary;
+}
+
+.emptyCard {
+  padding: $space-xl;
+}
+
+// 底部安全距离
+.section:last-child {
+  padding-bottom: 60px; // TabBar height
+}

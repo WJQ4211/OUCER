@@ -1,0 +1,100 @@
+/* ============================================
+   Global Styles (WeChat Mini-Program Compatible)
+   ============================================ */
+
+@import './variables.scss';
+
+/* ========== Page-level Reset ========== */
+
+page {
+  font-family: $font-family;
+  font-size: $body-md;
+  line-height: $line-height-md;
+  color: $text-dark;
+  background-color: $bg-main;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== Animations ========== */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ========== Utility Classes ========== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-primary { color: $primary; }
+.text-secondary { color: $text-medium; }
+.text-light { color: $text-light; }
+.text-success { color: $success; }
+.text-warning { color: $warning; }
+.text-error { color: $error; }
+
+.text-truncate { @include text-truncate; }
+.text-truncate-2 { @include text-truncate-lines(2); }
+.text-truncate-3 { @include text-truncate-lines(3); }
+
+.flex { display: flex; }
+.flex-center { @include flex-center; }
+.flex-between { @include flex-between; }
+.flex-column { display: flex; flex-direction: column; }
+
+.mt-s { margin-top: $space-s; }
+.mt-m { margin-top: $space-m; }
+.mt-l { margin-top: $space-l; }
+.mb-s { margin-bottom: $space-s; }
+.mb-m { margin-bottom: $space-m; }
+.mb-l { margin-bottom: $space-l; }
+.px-m { padding-left: $space-m; padding-right: $space-m; }
+.py-m { padding-top: $space-m; padding-bottom: $space-m; }
+
+.hidden { display: none !important; }
+.opacity-50 { opacity: 0.5; }
+
+/* ========== Skeleton Placeholder ========== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $bg-secondary 25%,
+    $bg-tertiary 50%,
+    $bg-secondary 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}

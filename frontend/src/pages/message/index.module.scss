@@ -1,0 +1,104 @@
+@import '@/styles/variables.scss';
+
+.tabBar {
+  padding: $space-s $space-l;
+  background-color: $bg-main;
+  border-bottom: 1px solid $border-color;
+}
+
+.tabScroll {
+  display: flex;
+  gap: $space-m;
+  white-space: nowrap;
+}
+
+.tabItem {
+  padding: $space-xs $space-m;
+  border-radius: $radius-pill;
+  transition: all $transition-fast;
+}
+
+.tabActive {
+  background-color: $primary-light;
+}
+
+.tabLabel {
+  font-size: $body-md;
+  color: $text-medium;
+}
+
+.tabLabelActive {
+  color: $primary;
+  font-weight: 500;
+}
+
+.listContainer {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.dateGroup {
+  display: block;
+  font-size: $body-sm;
+  color: $text-light;
+  padding: $space-m $space-l $space-s;
+}
+
+.notifItem {
+  display: flex;
+  align-items: flex-start;
+  padding: $space-m $space-l;
+  background-color: $bg-main;
+  transition: background-color $transition-fast;
+  border-bottom: 1px solid $border-color;
+
+  &:active {
+    background-color: $bg-secondary;
+  }
+}
+
+.unread {
+  background-color: $primary-light;
+}
+
+.notifAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-circle;
+  background-color: $bg-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $space-m;
+  flex-shrink: 0;
+}
+
+.notifIcon {
+  font-size: 20px;
+}
+
+.notifContent {
+  flex: 1;
+  overflow: hidden;
+}
+
+.notifHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+  margin-bottom: $space-xs;
+}
+
+.notifActor {
+  font-size: $body-md;
+  font-weight: 500;
+  color: $text-dark;
+  flex: 1;
+}
+
+.notifText {
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: $line-height-sm;
+  display: block;
+}

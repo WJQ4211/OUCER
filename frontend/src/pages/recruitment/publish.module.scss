@@ -1,0 +1,75 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.scrollContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-l;
+  padding-bottom: $space-xxxl;
+}
+
+.card {
+  margin-bottom: $space-l;
+  padding: $space-l;
+}
+
+.cardTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-l;
+  padding-bottom: $space-m;
+  border-bottom: 1px solid $border-color;
+}
+
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-s;
+}
+
+.fieldGroup {
+  margin-top: $space-l;
+}
+
+.fieldLabel {
+  font-size: $body-sm;
+  color: $text-medium;
+  margin-bottom: $space-s;
+  display: block;
+}
+
+.required {
+  color: $error;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: $space-m;
+  border: 1px solid $border-light;
+  border-radius: $radius-md;
+  font-size: $body-md;
+  font-family: $font-family;
+  box-sizing: border-box;
+  background-color: $bg-main;
+}
+
+.submitArea {
+  text-align: center;
+  margin-top: $space-xl;
+}
+
+.submitTip {
+  display: block;
+  color: $text-light;
+  font-size: $body-sm;
+  margin-top: $space-m;
+}

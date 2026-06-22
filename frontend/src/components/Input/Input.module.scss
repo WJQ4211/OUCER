@@ -1,0 +1,80 @@
+@import '@/styles/variables.scss';
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+}
+
+.input-label {
+  font-size: $body-md;
+  color: $text-dark;
+  font-weight: 500;
+}
+
+.input-required {
+  color: $error;
+  margin-left: 4px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+  padding: 0 $space-m;
+  height: 36px;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  background-color: white;
+  transition: all $transition-normal;
+
+  &:hover:not(.input-disabled) {
+    border-color: $primary;
+  }
+
+  &-focused {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &-disabled {
+    background-color: $bg-light;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.input-field {
+  flex: 1;
+  font-size: $body-md;
+  color: $text-dark;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: $text-light;
+  }
+}
+
+.input-prefix,
+.input-suffix {
+  font-size: 16px;
+  color: $text-medium;
+}
+
+.input-error {
+  .input-container {
+    border-color: $error;
+
+    &-focused {
+      box-shadow: 0 0 0 3px rgba($error, 0.1);
+    }
+  }
+}
+
+.input-error-text {
+  font-size: 12px;
+  color: $error;
+  margin-top: -4px;
+}

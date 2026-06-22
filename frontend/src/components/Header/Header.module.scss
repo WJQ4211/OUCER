@@ -1,0 +1,65 @@
+@import '@/styles/variables.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 $space-l;
+  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+  color: $text-white;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  flex-shrink: 0;
+  box-sizing: content-box; // so paddingTop from safe area is additive
+}
+
+.transparent {
+  background: transparent;
+  color: $text-dark;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  min-width: 36px;
+  height: 44px;
+}
+
+.backIcon {
+  font-size: 18px;
+  margin-right: $space-xs;
+}
+
+.backText {
+  font-size: $body-md;
+}
+
+.titleWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.title {
+  font-size: $heading-md;
+  font-weight: bold;
+  line-height: $line-height-sm;
+}
+
+.subtitle {
+  font-size: $body-sm;
+  opacity: 0.8;
+  line-height: $line-height-sm;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  min-width: 36px;
+  justify-content: flex-end;
+}

@@ -1,0 +1,70 @@
+@import '@/styles/variables.scss';
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  padding: $space-xs $space-m;
+  border-radius: $radius-md;
+  white-space: nowrap;
+  transition: all $transition-normal;
+
+  &-content {
+    font-size: $body-sm;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-close {
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity $transition-normal;
+
+    &:active {
+      opacity: 1;
+    }
+  }
+}
+
+/* 类型样式 */
+.tag-primary {
+  background-color: $primary-light;
+  color: $primary;
+}
+
+.tag-success {
+  background-color: rgba($success, 0.1);
+  color: $success;
+}
+
+.tag-warning {
+  background-color: rgba($warning, 0.1);
+  color: $warning;
+}
+
+.tag-error {
+  background-color: rgba($error, 0.1);
+  color: $error;
+}
+
+.tag-default {
+  background-color: $bg-light;
+  color: $text-medium;
+}
+
+/* 大小样式 */
+.tag-sm {
+  padding: 4px $space-s;
+  font-size: 12px;
+}
+
+.tag-md {
+  padding: $space-xs $space-m;
+  font-size: $body-sm;
+}
+
+.tag-lg {
+  padding: $space-s $space-l;
+  font-size: $body-md;
+}

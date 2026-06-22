@@ -1,0 +1,28 @@
+@import '@/styles/variables.scss';
+
+.card {
+  background-color: white;
+  border-radius: $radius-md;
+  padding: $space-l;
+  transition: all $transition-normal;
+
+  &-shadow {
+    box-shadow: $shadow-md;
+
+    &:hover {
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &-divider {
+    border-bottom: 1px solid $border-color;
+  }
+
+  &-clickable {
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

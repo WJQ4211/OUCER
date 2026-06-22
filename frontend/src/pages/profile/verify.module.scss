@@ -1,0 +1,119 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.scrollContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-l;
+  padding-bottom: $space-xxxl;
+}
+
+.introCard {
+  margin-bottom: $space-l;
+  padding: $space-l;
+  background: linear-gradient(135deg, $primary-light 0%, $bg-main 100%);
+}
+
+.introTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-s;
+}
+
+.introText {
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: $line-height-md;
+}
+
+.methodSelect {
+  display: flex;
+  gap: $space-m;
+  margin-bottom: $space-l;
+}
+
+.methodOption {
+  flex: 1;
+  padding: $space-l;
+  border-radius: $radius-lg;
+  background-color: $bg-main;
+  border: 2px solid $border-color;
+  text-align: center;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.methodActive {
+  border-color: $primary;
+  background-color: $primary-light;
+}
+
+.methodIcon {
+  display: block;
+  font-size: 28px;
+  margin-bottom: $space-s;
+}
+
+.methodLabel {
+  display: block;
+  font-size: $body-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: 2px;
+}
+
+.methodDesc {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.card {
+  margin-bottom: $space-l;
+  padding: $space-l;
+}
+
+.cardTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-s;
+}
+
+.cardDesc {
+  display: block;
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: $line-height-md;
+  margin-bottom: $space-l;
+}
+
+.steps {
+  margin-bottom: $space-l;
+}
+
+.step {
+  display: block;
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: 2;
+}
+
+.footerNote {
+  display: block;
+  text-align: center;
+  font-size: $body-sm;
+  color: $text-light;
+  padding: $space-l 0;
+}

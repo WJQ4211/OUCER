@@ -1,0 +1,39 @@
+@import '@/styles/variables.scss';
+
+.tabBar {
+  padding: $space-m $space-l;
+  background-color: $bg-main;
+  border-bottom: 1px solid $border-color;
+}
+
+.tabScroll {
+  display: flex;
+  gap: $space-s;
+  white-space: nowrap;
+}
+
+.listContainer {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.list {
+  padding: $space-l;
+}
+
+.noMore {
+  display: block;
+  text-align: center;
+  color: $text-light;
+  font-size: $body-sm;
+  padding: $space-xl 0 80px;
+}
+
+.fab {
+  position: fixed;
+  right: $space-l;
+  bottom: 80px;
+  z-index: $z-index-floating-button;
+  box-shadow: $shadow-lg;
+  border-radius: $radius-circle;
+}

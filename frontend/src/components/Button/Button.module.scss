@@ -1,0 +1,151 @@
+@import '@/styles/variables.scss';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-s;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  font-weight: 600;
+  border-radius: $radius-md;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+
+  &:active:not(.button-disabled):not(.button-loading) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* 类型样式 */
+.button-primary {
+  background-color: $primary;
+  color: white;
+  box-shadow: $shadow-sm;
+
+  &:hover:not(.button-disabled) {
+    background-color: $primary-dark;
+    box-shadow: $shadow-md;
+  }
+}
+
+.button-secondary {
+  background-color: $primary-light;
+  color: $primary;
+  border: 1px solid $primary;
+
+  &:hover:not(.button-disabled) {
+    background-color: darken($primary-light, 5%);
+  }
+}
+
+.button-tertiary {
+  background-color: transparent;
+  color: $primary;
+  border: 1px solid $text-light;
+
+  &:hover:not(.button-disabled) {
+    background-color: rgba($primary, 0.05);
+  }
+}
+
+.button-danger {
+  background-color: $error;
+  color: white;
+
+  &:hover:not(.button-disabled) {
+    background-color: darken($error, 10%);
+  }
+}
+
+/* 大小样式 */
+.button-sm {
+  padding: $space-xs $space-m;
+  font-size: 12px;
+  height: 28px;
+  min-width: 60px;
+}
+
+.button-md {
+  padding: $space-s $space-l;
+  font-size: 14px;
+  height: 36px;
+  min-width: 80px;
+}
+
+.button-lg {
+  padding: $space-m $space-xl;
+  font-size: 16px;
+  height: 44px;
+  min-width: 100px;
+}
+
+/* 形状样式 */
+.button-round {
+  border-radius: $radius-lg;
+}
+
+.button-circle {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  min-width: unset;
+
+  &.button-sm {
+    width: 28px;
+    height: 28px;
+  }
+
+  &.button-lg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* 禁用状态 */
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 加载状态 */
+.button-loading {
+  pointer-events: none;
+}
+
+.button-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* 块级按钮 */
+.button-block {
+  width: 100%;
+  display: flex;
+}
+
+/* 文本 */
+.button-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

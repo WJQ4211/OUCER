@@ -1,0 +1,60 @@
+@import '@/styles/variables.scss';
+
+.badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-has-children {
+  display: inline-block;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  border: 2px solid white;
+  box-shadow: $shadow-sm;
+
+  &-content {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+  }
+
+  &-dot {
+    min-width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
+
+/* 类型样式 */
+.badge-primary {
+  background-color: $primary;
+}
+
+.badge-success {
+  background-color: $success;
+}
+
+.badge-warning {
+  background-color: $warning;
+}
+
+.badge-error {
+  background-color: $error;
+}
+
+.badge-info {
+  background-color: $info;
+}

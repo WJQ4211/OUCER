@@ -1,0 +1,251 @@
+/* ============================================
+   Haidaren Alumni Forum - Global Style Variables
+   ============================================ */
+
+/* Brand Colors */
+$primary: #0066cc;
+$primary-light: #e8f3ff;
+$primary-dark: #0052a3;
+$primary-disabled: #cccccc;
+
+/* Accent Colors */
+$accent: #ff6b35;
+$success: #2ecc71;
+$warning: #f39c12;
+$error: #e74c3c;
+$info: #1890ff;
+
+/* Text Colors */
+$text-dark: #333333;
+$text-medium: #666666;
+$text-light: #999999;
+$text-white: #ffffff;
+
+/* Background Colors */
+$bg-main: #ffffff;
+$bg-light: #f9f9f9;
+$bg-secondary: #f5f5f5;
+$bg-tertiary: #fafafa;
+
+/* Border Colors */
+$border-color: #e8e8e8;
+$border-light: #e0e0e0;
+$border-medium: #cccccc;
+
+/* Industry Colors */
+$industry-tech: #0066cc;
+$industry-finance: #ffb800;
+$industry-ecom: #ff6b35;
+$industry-estate: #95de64;
+$industry-other: #9c9cff;
+
+/* ============================================
+   Typography System
+   ============================================ */
+
+/* Headings */
+$heading-xl: 20px;
+$heading-lg: 18px;
+$heading-md: 16px;
+
+/* Body */
+$body-lg: 16px;
+$body-md: 14px;
+$body-sm: 12px;
+
+/* Line Heights */
+$line-height-lg: 1.6;
+$line-height-md: 1.5;
+$line-height-sm: 1.4;
+
+/* Font Family */
+$font-family: 'Segoe UI', 'Helvetica Neue', 'Microsoft YaHei', system-ui, sans-serif;
+
+/* ============================================
+   Spacing System (base: 8px)
+   ============================================ */
+
+$space-xs: 4px;
+$space-s: 8px;
+$space-m: 12px;
+$space-l: 16px;
+$space-xl: 24px;
+$space-xxl: 32px;
+$space-xxxl: 48px;
+
+/* ============================================
+   Border Radius System
+   ============================================ */
+
+$radius-none: 0;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-pill: 24px;
+$radius-circle: 50%;
+
+/* ============================================
+   Shadow System
+   ============================================ */
+
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+/* ============================================
+   Transition / Animation
+   ============================================ */
+
+$transition-fast: 150ms ease-in-out;
+$transition-normal: 200ms ease-in-out;
+$transition-slow: 300ms ease-in-out;
+
+$cubic-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$cubic-ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+$cubic-ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+/* ============================================
+   z-index Layers
+   ============================================ */
+
+$z-index-hidden: -1;
+$z-index-default: 0;
+$z-index-dropdown: 10;
+$z-index-sticky: 20;
+$z-index-fixed: 30;
+$z-index-floating-button: 40;
+$z-index-modal-backdrop: 50;
+$z-index-modal: 60;
+$z-index-toast: 70;
+$z-index-tooltip: 80;
+
+$z-modal: $z-index-modal;
+$z-toast: $z-index-toast;
+$z-dropdown: $z-index-dropdown;
+$z-tooltip: $z-index-tooltip;
+
+/* ============================================
+   Media Query Breakpoints
+   ============================================ */
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+/* ============================================
+   Mixins
+   ============================================ */
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin ellipsis-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin card-shadow {
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+}
+
+@mixin button-style {
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+  font-family: $font-family;
+  font-weight: 500;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@mixin button-primary {
+  @include button-style;
+  background-color: $primary;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+  }
+
+  &:disabled {
+    background-color: $primary-disabled;
+    color: $text-light;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-secondary {
+  @include button-style;
+  background-color: $primary-light;
+  color: $primary;
+  border: 1px solid $primary;
+
+  &:hover:not(:disabled) {
+    background-color: mix($primary-light, $primary, 80%);
+  }
+
+  &:disabled {
+    background-color: $bg-secondary;
+    color: $primary-disabled;
+    border-color: $border-light;
+    cursor: not-allowed;
+  }
+}
+
+@mixin input-style {
+  width: 100%;
+  padding: $space-m;
+  border: 1px solid $border-light;
+  border-radius: $radius-md;
+  font-family: $font-family;
+  font-size: $body-md;
+  transition: all $transition-fast;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+  }
+
+  &:disabled {
+    background-color: $bg-secondary;
+    color: $text-light;
+    cursor: not-allowed;
+  }
+}
+
+@mixin text-truncate {
+  @include ellipsis;
+}
+
+@mixin text-truncate-lines($lines: 2) {
+  @include ellipsis-lines($lines);
+}

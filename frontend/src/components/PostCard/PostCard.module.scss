@@ -1,0 +1,117 @@
+@import '@/styles/variables.scss';
+
+.card {
+  background-color: $bg-main;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  padding: $space-l;
+  margin-bottom: $space-m;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadow-md;
+  }
+}
+
+.badges {
+  display: flex;
+  gap: $space-s;
+  margin-bottom: $space-s;
+}
+
+.authorRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: $space-m;
+}
+
+.authorMeta {
+  margin-left: $space-s;
+  flex: 1;
+  overflow: hidden;
+}
+
+.authorNameRow {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
+
+.authorName {
+  font-size: $body-sm;
+  font-weight: 500;
+  color: $text-dark;
+  flex: 1;
+}
+
+.verifiedBadge {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.authorSub {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+  margin-top: 2px;
+}
+
+.ipLocation {
+  font-size: 10px;
+  color: $text-light;
+}
+
+.time {
+  font-size: 10px;
+  color: $text-light;
+}
+
+.title {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  line-height: $line-height-md;
+  margin-bottom: $space-s;
+}
+
+.content {
+  display: block;
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: $line-height-sm;
+  margin-bottom: $space-m;
+}
+
+.categoryRow {
+  margin-bottom: $space-m;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: $space-l;
+  padding-top: $space-s;
+  border-top: 1px solid $border-color;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.statIcon {
+  font-size: $body-sm;
+  line-height: 1;
+}
+
+.statText {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.likeBtn {
+  cursor: pointer;
+}

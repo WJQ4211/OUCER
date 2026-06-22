@@ -1,0 +1,150 @@
+@import '@/styles/variables.scss';
+
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.loading-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-modal;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-l;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner 样式 */
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba($primary, 0.2);
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+
+  &.loader-sm {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+  }
+
+  &.loader-lg {
+    width: 56px;
+    height: 56px;
+    border-width: 5px;
+  }
+}
+
+/* Dots 样式 */
+.loader-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.loader-dot {
+  width: 8px;
+  height: 8px;
+  background-color: $primary;
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+
+  &.loader-sm & {
+    width: 6px;
+    height: 6px;
+  }
+
+  &.loader-lg & {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Bar 样式 */
+.loader-bar {
+  width: 120px;
+  height: 4px;
+  background-color: rgba($primary, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 100%;
+    background-color: $primary;
+    border-radius: 2px;
+    animation: slideBar 1.5s ease-in-out infinite;
+  }
+
+  &.loader-sm {
+    width: 80px;
+    height: 2px;
+  }
+
+  &.loader-lg {
+    width: 160px;
+    height: 6px;
+  }
+}
+
+.loading-text {
+  font-size: $body-sm;
+  color: $text-medium;
+  margin-top: $space-s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(280px);
+  }
+}

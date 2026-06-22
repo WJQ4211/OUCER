@@ -1,0 +1,87 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.scrollContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-l;
+  padding-bottom: $space-xxxl;
+}
+
+.card {
+  margin-bottom: $space-l;
+  padding: $space-l;
+}
+
+.cardTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-l;
+  padding-bottom: $space-m;
+  border-bottom: 1px solid $border-color;
+}
+
+.fieldGroup {
+  margin-bottom: $space-l;
+}
+
+.fieldLabel {
+  font-size: $body-sm;
+  color: $text-medium;
+  margin-bottom: $space-s;
+  display: block;
+}
+
+.required {
+  color: $error;
+}
+
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-s;
+}
+
+.textareaField {
+  margin-bottom: $space-l;
+}
+
+.textarea {
+  width: 100%;
+  padding: $space-m;
+  border: 1px solid $border-light;
+  border-radius: $radius-md;
+  font-size: $body-md;
+  font-family: $font-family;
+  resize: vertical;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+}
+
+.submitArea {
+  text-align: center;
+  margin-top: $space-l;
+}
+
+.submitTip {
+  display: block;
+  color: $text-light;
+  font-size: $body-sm;
+  margin-top: $space-m;
+}

@@ -1,0 +1,124 @@
+@import '@/styles/variables.scss';
+
+.card {
+  position: relative;
+  background-color: $bg-main;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  padding: $space-l;
+  margin-bottom: $space-m;
+  overflow: hidden;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadow-md;
+  }
+}
+
+.industryBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: $radius-sm 0 0 $radius-sm;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $space-m;
+}
+
+.companyInfo {
+  flex: 1;
+  margin-right: $space-m;
+  overflow: hidden;
+}
+
+.company {
+  font-size: $body-md;
+  color: $text-medium;
+  line-height: $line-height-sm;
+  display: block;
+}
+
+.position {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-top: $space-xs;
+  line-height: $line-height-md;
+  display: block;
+}
+
+.salaryBlock {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.salary {
+  font-size: $heading-lg;
+  font-weight: bold;
+  color: $accent;
+  line-height: 1;
+}
+
+.salaryUnit {
+  font-size: $body-sm;
+  color: $text-light;
+  display: block;
+  margin-top: 2px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-s;
+  margin-bottom: $space-m;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.publisher {
+  flex: 1;
+  overflow: hidden;
+}
+
+.referrer {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: $space-m;
+  flex-shrink: 0;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.statIcon {
+  font-size: $body-sm;
+  line-height: 1;
+}
+
+.statText {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+.likeBtn {
+  cursor: pointer;
+}

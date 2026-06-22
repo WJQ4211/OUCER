@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+dist/
+build/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+.nyc_output/
+
+# misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Taro
+.rn_temp/
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.sln
+*.swp
+*.sw?
+*.iml
+
+# System
+Thumbs.db
+.env.local
+.env.*.local

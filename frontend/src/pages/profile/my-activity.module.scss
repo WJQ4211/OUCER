@@ -1,0 +1,48 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.tabBar {
+  display: flex;
+  background-color: $bg-main;
+  border-bottom: 1px solid $border-color;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-m 0;
+  position: relative;
+}
+
+.tabText {
+  font-size: $body-md;
+  color: $text-medium;
+}
+
+.tabTextActive {
+  color: $primary;
+  font-weight: 500;
+}
+
+.tabIndicator {
+  position: absolute;
+  bottom: 0;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: $primary;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-l;
+}

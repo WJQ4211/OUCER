@@ -1,0 +1,119 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cover {
+  height: 160px;
+  background: linear-gradient(135deg, $primary-light 0%, $primary 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverEmoji {
+  font-size: 48px;
+}
+
+.infoCard,
+.descCard,
+.organizerCard {
+  margin: $space-m $space-l;
+  padding: $space-l;
+}
+
+.title {
+  display: block;
+  font-size: $heading-xl;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-l;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: $space-m;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+}
+
+.metaIcon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.metaText {
+  font-size: $body-md;
+  color: $text-medium;
+}
+
+.fullBadge {
+  color: $error;
+}
+
+.sectionTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-m;
+}
+
+.desc {
+  font-size: $body-md;
+  color: $text-medium;
+  line-height: $line-height-lg;
+  display: block;
+  white-space: pre-wrap;
+}
+
+.organizerRow {
+  display: flex;
+  align-items: center;
+  gap: $space-m;
+}
+
+.organizerName {
+  font-size: $body-md;
+  color: $text-dark;
+}
+
+.bottomSpace {
+  height: 80px;
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $bg-main;
+  border-top: 1px solid $border-color;
+  padding: $space-m $space-l;
+  padding-bottom: calc($space-m + constant(safe-area-inset-bottom));
+  padding-bottom: calc($space-m + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: $z-index-fixed;
+}
+
+.participantCount {
+  font-size: $body-md;
+  color: $text-medium;
+}

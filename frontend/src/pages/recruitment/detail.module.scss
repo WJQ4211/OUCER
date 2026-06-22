@@ -1,0 +1,171 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-secondary;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.infoCard,
+.commentCard {
+  margin: $space-m $space-l;
+  padding: $space-l;
+}
+
+// Author
+.authorRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: $space-l;
+}
+
+.authorMeta {
+  margin-left: $space-m;
+  flex: 1;
+}
+
+.authorNameRow {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
+
+.authorName {
+  font-size: $body-md;
+  font-weight: 500;
+  color: $text-dark;
+}
+
+.verifiedBadge {
+  font-size: 12px;
+}
+
+.authorSub {
+  display: flex;
+  align-items: center;
+  gap: $space-m;
+  margin-top: 2px;
+}
+
+.ipText {
+  font-size: 10px;
+  color: $text-light;
+}
+
+.timeText {
+  font-size: 10px;
+  color: $text-light;
+}
+
+// Title & body
+.title {
+  display: block;
+  font-size: $heading-xl;
+  font-weight: bold;
+  color: $text-dark;
+  line-height: $line-height-lg;
+  margin-bottom: $space-m;
+}
+
+.tagRow {
+  display: flex;
+  gap: $space-s;
+  margin-bottom: $space-m;
+}
+
+.body {
+  font-size: $body-md;
+  color: $text-dark;
+  line-height: $line-height-lg;
+  display: block;
+  white-space: pre-wrap;
+  margin-bottom: $space-l;
+}
+
+.stats {
+  display: flex;
+  gap: $space-xl;
+  padding-top: $space-m;
+  border-top: 1px solid $border-color;
+}
+
+.statItem {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+// Comments
+.sectionTitle {
+  display: block;
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+  margin-bottom: $space-l;
+}
+
+.commentItem {
+  padding: $space-m 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+  margin-bottom: $space-xs;
+}
+
+.commentName {
+  font-size: $body-sm;
+  font-weight: 500;
+  color: $text-dark;
+  flex: 1;
+}
+
+.commentTime {
+  font-size: 10px;
+  color: $text-light;
+}
+
+.commentContent {
+  font-size: $body-md;
+  color: $text-dark;
+  line-height: $line-height-md;
+  padding-left: 36px;
+  display: block;
+}
+
+.bottomSpace {
+  height: 60px;
+}
+
+.emptyAction {
+  padding: $space-l;
+}
+
+// Bottom bar
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $bg-main;
+  border-top: 1px solid $border-color;
+  padding: $space-m $space-l;
+  padding-bottom: calc($space-m + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-m;
+  z-index: $z-index-fixed;
+}

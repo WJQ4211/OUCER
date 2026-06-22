@@ -1,0 +1,123 @@
+@import '@/styles/variables.scss';
+
+.citySection {
+  padding: $space-l;
+  background-color: $bg-main;
+  border-bottom: 1px solid $border-color;
+}
+
+.cityScroll {
+  display: flex;
+  gap: $space-m;
+  white-space: nowrap;
+}
+
+.cityItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-m $space-l;
+  border-radius: $radius-lg;
+  background-color: $bg-secondary;
+  transition: all $transition-fast;
+  min-width: 80px;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.cityActive {
+  background-color: $primary-light;
+  border: 2px solid $primary;
+}
+
+.cityIcon {
+  font-size: 28px;
+  margin-bottom: $space-xs;
+}
+
+.cityName {
+  font-size: $body-md;
+  font-weight: 500;
+  color: $text-dark;
+  margin-bottom: 2px;
+}
+
+.cityCount {
+  font-size: $body-sm;
+  color: $text-light;
+}
+
+// 据点信息
+.locationInfo {
+  padding: $space-l;
+}
+
+.locationCard {
+  padding: $space-l;
+  margin-bottom: $space-l;
+}
+
+.locationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-m;
+}
+
+.locationName {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+}
+
+.locationDesc {
+  font-size: $body-sm;
+  color: $text-medium;
+  line-height: $line-height-md;
+  margin-bottom: $space-m;
+  display: block;
+}
+
+.locationActions {
+  display: flex;
+  gap: $space-s;
+}
+
+// 活动区块
+.activitySection {
+  margin-bottom: $space-l;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-m;
+}
+
+.sectionTitle {
+  font-size: $heading-md;
+  font-weight: bold;
+  color: $text-dark;
+}
+
+.sectionMore {
+  font-size: $body-sm;
+  color: $primary;
+  font-weight: 500;
+}
+
+.promptSection {
+  padding: $space-xxxl $space-l;
+}
+
+.fab {
+  position: fixed;
+  right: $space-l;
+  bottom: 80px;
+  z-index: $z-index-floating-button;
+  box-shadow: $shadow-lg;
+  border-radius: $radius-circle;
+}
