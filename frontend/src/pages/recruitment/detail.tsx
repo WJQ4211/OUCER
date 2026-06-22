@@ -1,12 +1,13 @@
 /**
- * Discussion post detail
+ * Discussion post detail with comment section
  */
 
-import { FC, useEffect } from 'react'
-import { View, Text, ScrollView } from '@tarojs/components'
+import { FC, useEffect, useState } from 'react'
+import { View, Text, ScrollView, Input } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
 import { Header, Card, Tag, Button, Avatar, Skeleton, EmptyState } from '@/components'
 import { useDiscussionDetail } from '@/hooks/useRecruitment'
+import { addComment } from '@/services/api/recruitment'
 import { CATEGORY_MAP } from '@/types/discussion'
 import { timeAgo } from '@/utils/date'
 import { formatCount } from '@/utils/format'
@@ -16,10 +17,29 @@ const PostDetailPage: FC = () => {
   const router = useRouter()
   const { id } = router.params
   const { post, loading, load, handleLike } = useDiscussionDetail()
+  const [commentText, setCommentText] = useState('')
+  const [submittingComment, setSubmittingComment] = useState(false)
 
   useEffect(() => {
     if (id) load(id as string)
   }, [id])
+
+  const handleSubmitComment = async () => {
+    if (!commentText.trim()) return
+    if (!id) return
+    setSubmittingComment(true)
+    try {
+      await addComment(id as string, commentText.trim())
+      setCommentText('')
+      Taro.showToast({ title: '评论成功', icon: 'success' })
+      // Reload to show new comment
+      load(id as string)
+    } catch {
+      Taro.showToast({ title: '评论失败', icon: 'none' })
+    } finally {
+      setSubmittingComment(false)
+    }
+  }
 
   if (loading) {
     return (
@@ -44,6 +64,7 @@ const PostDetailPage: FC = () => {
 
   const cat = CATEGORY_MAP[post.category as keyof typeof CATEGORY_MAP]
   const author = post.author || {}
+  const comments = (post as any).comments || []
 
   return (
     <View className={styles.page}>
@@ -84,8 +105,8 @@ const PostDetailPage: FC = () => {
         {/* Comments */}
         <Card className={styles.commentCard}>
           <Text className={styles.sectionTitle}>评论 ({post.commentCount || 0})</Text>
-          {(post as any).comments?.length > 0 ? (
-            (post as any).comments.map((c: any) => (
+          {comments.length > 0 ? (
+            comments.map((c: any) => (
               <View key={c.id} className={styles.commentItem}>
                 <View className={styles.commentHeader}>
                   <Avatar name={c.author?.nickname || '?'} size="sm" />
@@ -103,13 +124,31 @@ const PostDetailPage: FC = () => {
         <View className={styles.bottomSpace} />
       </ScrollView>
 
-      {/* Bottom bar */}
+      {/* Bottom bar with comment input */}
       <View className={styles.bottomBar}>
         <Button type="secondary" shape="round" size="sm" onClick={handleLike}>
           {post.isLiked ? '❤️' : '🤍'} {formatCount(post.likes)}
         </Button>
-        <Button type="primary" shape="round" size="sm" onClick={() => Taro.showToast({ title: '评论功能开发中', icon: 'none' })}>
-          💬 写评论
+        <View className={styles.commentInputWrap}>
+          <Input
+            className={styles.commentInput}
+            type="text"
+            placeholder="写评论..."
+            value={commentText}
+            onInput={(e) => setCommentText(e.detail.value)}
+            confirmType="send"
+            onConfirm={handleSubmitComment}
+          />
+        </View>
+        <Button
+          type="primary"
+          shape="round"
+          size="sm"
+          loading={submittingComment}
+          disabled={!commentText.trim()}
+          onClick={handleSubmitComment}
+        >
+          发送
         </Button>
       </View>
     </View>

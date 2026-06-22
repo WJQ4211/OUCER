@@ -147,7 +147,7 @@
 }
 
 .bottomSpace {
-  height: 60px;
+  height: 80px;
 }
 
 .emptyAction {
@@ -162,10 +162,28 @@
   right: 0;
   background-color: $bg-main;
   border-top: 1px solid $border-color;
-  padding: $space-m $space-l;
-  padding-bottom: calc($space-m + env(safe-area-inset-bottom));
+  padding: $space-s $space-l;
+  padding-bottom: calc($space-s + env(safe-area-inset-bottom));
   display: flex;
-  justify-content: flex-end;
-  gap: $space-m;
+  align-items: center;
+  gap: $space-s;
   z-index: $z-index-fixed;
+}
+
+.commentInputWrap {
+  flex: 1;
+  background-color: $bg-secondary;
+  border-radius: $radius-pill;
+  padding: 0 $space-m;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.commentInput {
+  flex: 1;
+  font-size: $body-sm;
+  color: $text-dark;
+  height: 36px;
+  line-height: 36px;
 }

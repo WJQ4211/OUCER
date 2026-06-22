@@ -1,6 +1,8 @@
 @import '@/styles/variables.scss';
 
 .tabBar {
+  display: flex;
+  align-items: center;
   padding: $space-s $space-l;
   background-color: $bg-main;
   border-bottom: 1px solid $border-color;
@@ -10,6 +12,7 @@
   display: flex;
   gap: $space-m;
   white-space: nowrap;
+  flex: 1;
 }
 
 .tabItem {
@@ -32,6 +35,12 @@
   font-weight: 500;
 }
 
+.markAllRead {
+  font-size: $body-sm;
+  color: $primary;
+  flex-shrink: 0;
+}
+
 .listContainer {
   flex: 1;
   overflow-y: auto;
@@ -50,7 +59,7 @@
   padding: $space-m $space-l;
   background-color: $bg-main;
   transition: background-color $transition-fast;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid #f5f5f5;
 
   &:active {
     background-color: $bg-secondary;
@@ -84,21 +93,19 @@
 
 .notifHeader {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: $space-s;
   margin-bottom: $space-xs;
 }
 
-.notifActor {
+.notifText {
   font-size: $body-md;
-  font-weight: 500;
   color: $text-dark;
+  line-height: $line-height-sm;
   flex: 1;
 }
 
-.notifText {
-  font-size: $body-sm;
-  color: $text-medium;
-  line-height: $line-height-sm;
-  display: block;
+.notifTime {
+  font-size: 10px;
+  color: $text-light;
 }

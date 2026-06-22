@@ -4,11 +4,12 @@
 
 import { FC, useEffect } from 'react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import Taro, { useReachBottom, usePullDownRefresh } from '@tarojs/taro'
+import Taro, { useReachBottom, usePullDownRefresh, useDidShow } from '@tarojs/taro'
 import { PageLayout, Header, Tag, Button, Skeleton, EmptyState } from '@/components'
 import { PostCard } from '@/components/PostCard'
 import { useDiscussionList } from '@/hooks/useRecruitment'
 import type { DiscussionCategory } from '@/types/discussion'
+import styles from './index.module.scss'
 
 const CATEGORY_FILTERS: { key: DiscussionCategory | ''; label: string }[] = [
   { key: '', label: '全部' },
@@ -22,12 +23,18 @@ const CATEGORY_FILTERS: { key: DiscussionCategory | ''; label: string }[] = [
 const ForumPage: FC = () => {
   const {
     list, loading, hasMore, filter,
-    refresh, loadMore, setFilter, handleLike, handleDelete,
+    refresh, loadMore, setFilter, handleLike,
   } = useDiscussionList()
 
+  // Refresh on first mount
   useEffect(() => {
     refresh()
   }, [])
+
+  // Refresh every time the page becomes visible (e.g., back from publish)
+  useDidShow(() => {
+    refresh()
+  })
 
   usePullDownRefresh(() => {
     refresh().finally(() => Taro.stopPullDownRefresh())
@@ -55,9 +62,8 @@ const ForumPage: FC = () => {
     <PageLayout activeTab="recruitment" showTabBar>
       <Header title="校友论坛" subtitle="交流讨论 · 互相帮助" />
 
-      {/* Category filter */}
-      <View className={styles.tabBar}>
-        <ScrollView scrollX className={styles.tabScroll}>
+      <View className={styles.filterBar}>
+        <ScrollView scrollX className={styles.filterScroll}>
           {CATEGORY_FILTERS.map((f) => (
             <Tag
               key={f.key}
@@ -71,7 +77,6 @@ const ForumPage: FC = () => {
         </ScrollView>
       </View>
 
-      {/* Post list */}
       <ScrollView scrollY className={styles.listContainer} onScrollToLower={loadMore}>
         {loading && list.length === 0 ? (
           <Skeleton type="list" count={4} />
@@ -98,7 +103,6 @@ const ForumPage: FC = () => {
         )}
       </ScrollView>
 
-      {/* FAB */}
       <View className={styles.fab}>
         <Button type="primary" shape="circle" size="lg" onClick={handleCreatePost}>
           ✏️

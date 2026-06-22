@@ -9,6 +9,7 @@ import { connectDB } from '@/config/database'
 import { errorHandler } from '@/middlewares/errorHandler'
 import authRoutes from '@/routes/auth'
 import discussionRoutes from '@/routes/discussions'
+import activityRoutes from '@/routes/activities'
 import notificationRoutes from '@/routes/notifications'
 
 const app = express()
@@ -47,6 +48,7 @@ app.get('/api/health', (_req: Request, res: Response) => {
 // API routes
 app.use('/api/auth', authRoutes)
 app.use('/api/discussions', discussionRoutes)
+app.use('/api/activities', activityRoutes)
 app.use('/api/notifications', notificationRoutes)
 
 // 404

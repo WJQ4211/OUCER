@@ -123,6 +123,11 @@ export const getActivityParticipants = (
   return get(`/api/activities/${id}/participants`, { page, pageSize })
 }
 
+/** 发布活动评论 */
+export const addActivityComment = (activityId: string, content: string): Promise<Comment> => {
+  return post(`/api/activities/${activityId}/comments`, { content })
+}
+
 /** 获取活动评论 */
 export const getActivityComments = (
   id: string,
